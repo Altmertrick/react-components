@@ -1,33 +1,40 @@
 import React from 'react';
 
-import { GoBell } from 'react-icons/go';
+import { GoBell, GoGlobe, GoSquirrel } from 'react-icons/go';
 
 import './App.css';
 import Button from './Button/Button';
 
 function App() {
+  const handleEvent = () => {
+    console.log('Hello');
+  };
+
   return (
     <div className="App">
       <div>
-        <Button type={'primary'} outlined>
+        <Button onClick={handleEvent} styleType={'primary'} outlined>
           <GoBell />
           Primary
         </Button>
       </div>
       <div>
-        <Button type={'secondary'}>Secondary</Button>
+        <Button onMouseEnter={handleEvent} styleType={'secondary'}>
+          <GoSquirrel />
+          Secondary
+        </Button>
       </div>
       <div>
-        <Button type={'success'} outlined>
-          <GoBell />
+        <Button styleType={'success'} outlined>
+          <GoGlobe />
           Success
         </Button>
       </div>
       <div>
-        <Button type={'warning'}>Warning</Button>
+        <Button styleType={'warning'}>Warning</Button>
       </div>
       <div>
-        <Button type={'danger'}>Danger</Button>
+        <Button styleType={'danger'}>Danger</Button>
       </div>
     </div>
   );
