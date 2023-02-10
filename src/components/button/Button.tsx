@@ -11,6 +11,7 @@ interface BtnCustomPropsT {
   styleType: ButtonStyleT;
   outlined?: boolean;
   rounded?: boolean;
+  className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -48,7 +49,8 @@ const Button: React.FC<PropsT> = ({
     },
     {
       [`bg-white text-${color}-500`]: outlined,
-    }
+    },
+    rest.className
   );
 
   return (

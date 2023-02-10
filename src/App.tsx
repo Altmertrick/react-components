@@ -1,41 +1,33 @@
-import React from 'react';
-
-import { GoBell, GoGlobe, GoSquirrel } from 'react-icons/go';
-
 import './App.css';
-import Button from './Button/Button';
+import Accordion from './components/accordion/Accordion';
+
+import ButtonPage from './pages/buttonPage/ButtonPage';
 
 function App() {
-  const handleEvent = () => {
-    console.log('Hello');
-  };
+  const items = [
+    {
+      id: 'sdfsadf',
+      label: 'Hello world Hello world',
+      content:
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea obcaecati eum consequuntur Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+    },
+    {
+      id: 'asfwer2',
+      label: 'Hi there Hi there',
+      content:
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea obcaecati eum consequuntur Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+    },
+    {
+      id: 'asfwserer2',
+      label: 'How are you How are you',
+      content:
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea obcaecati eum consequuntur',
+    },
+  ];
 
   return (
     <div className="App">
-      <div>
-        <Button onClick={handleEvent} styleType={'primary'} outlined>
-          <GoBell />
-          Primary
-        </Button>
-      </div>
-      <div>
-        <Button onMouseEnter={handleEvent} styleType={'secondary'}>
-          <GoSquirrel />
-          Secondary
-        </Button>
-      </div>
-      <div>
-        <Button styleType={'success'} outlined>
-          <GoGlobe />
-          Success
-        </Button>
-      </div>
-      <div>
-        <Button styleType={'warning'}>Warning</Button>
-      </div>
-      <div>
-        <Button styleType={'danger'}>Danger</Button>
-      </div>
+      <Accordion items={items} />
     </div>
   );
 }
