@@ -15,11 +15,20 @@ const Accordion: React.FC<PropsT> = ({ items }) => {
   const [expandedIndex, setExpandedIndex] = useState(-1);
 
   const handleClick = (idx: number) => {
-    if (idx === expandedIndex) {
-      setExpandedIndex(-1);
-    } else {
-      setExpandedIndex(idx);
-    }
+    //use functional state update,
+    // because new state value is depending on the old state value
+    setExpandedIndex((currentExpIdx) => {
+      if (currentExpIdx === idx) {
+        return -1;
+      }
+      return idx;
+    });
+
+    // if (idx === expandedIndex) {
+    //   setExpandedIndex(-1);
+    // } else {
+    //   setExpandedIndex(idx);
+    // }
   };
 
   const renderedItems = items.map((item, idx) => {
