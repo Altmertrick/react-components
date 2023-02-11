@@ -20,15 +20,9 @@ function App() {
   ];
 
   return (
-    <div className="App">
+    <div className="flex">
       <Dropdown options={options} value={selected} onChange={handleSelect} />
-      <div>Hello world</div>
-      <Panel
-        className="bg-red-600"
-        onClick={() => {
-          console.log('first');
-        }}
-      ></Panel>
+      <Dropdown options={options} value={selected} onChange={handleSelect} />
     </div>
   );
 }

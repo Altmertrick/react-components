@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { GoChevronDown, GoChevronLeft } from 'react-icons/go';
 import Panel from '../panel/Panel';
 
@@ -14,6 +14,33 @@ type PropsT = {
 
 const Dropdown: React.FC<PropsT> = ({ options, value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const divEl = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    //1 after clicking outside the dropdown it should be closed
+    const handler = (e: MouseEvent) => {
+      //in some cases we can toggle visibility of divEl
+      if (!divEl.current) return;
+
+      console.log(divEl.current);
+      //3checking if clicked element is in the dropdown
+      if (!divEl.current?.contains(e.target as Node)) {
+        // console.log('outside');
+        setIsOpen(false);
+      } else {
+        //console.log('inside');
+      }
+    };
+
+    //2callback will be invoked on event's CAPTURING_PHASE
+    //so after "click" on one of the options (see const renderedOptions)
+    //at first be invoked document's callback - 'handler'
+    //and then callback on the option
+    document.addEventListener('click', handler, true);
+    return () => {
+      document.removeEventListener('click', handler);
+    };
+  }, []);
 
   const toggleIsOpen = () => {
     setIsOpen(!isOpen);
@@ -38,7 +65,7 @@ const Dropdown: React.FC<PropsT> = ({ options, value, onChange }) => {
   });
 
   return (
-    <div className="cursor-pointer w-48 relative">
+    <div ref={divEl} className="cursor-pointer w-48 relative">
       <Panel
         className="cursor-pointer flex items-center justify-between "
         onClick={toggleIsOpen}
