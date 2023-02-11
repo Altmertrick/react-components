@@ -1,33 +1,26 @@
 import './App.css';
-import Accordion from './components/accordion/Accordion';
 
 import ButtonPage from './pages/buttonPage/ButtonPage';
+import AccordionPage from './pages/accordionPage/AccordionPage';
+import Dropdown, { OptionT } from './components/dropdown/Dropdown';
+import { useState } from 'react';
 
 function App() {
-  const items = [
-    {
-      id: 'sdfsadf',
-      label: 'Hello world Hello world',
-      content:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea obcaecati eum consequuntur Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-    },
-    {
-      id: 'asfwer2',
-      label: 'Hi there Hi there',
-      content:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea obcaecati eum consequuntur Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-    },
-    {
-      id: 'asfwserer2',
-      label: 'How are you How are you',
-      content:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea obcaecati eum consequuntur',
-    },
+  const [selected, setSelected] = useState<OptionT | null>(null);
+
+  const handleSelect = (selected: OptionT) => {
+    setSelected(selected);
+  };
+
+  const options = [
+    { label: 'Red', value: 'red' },
+    { label: 'Green', value: 'green' },
+    { label: 'Blue', value: 'blue' },
   ];
 
   return (
     <div className="App">
-      <Accordion items={items} />
+      <Dropdown options={options} value={selected} onChange={handleSelect} />
     </div>
   );
 }
