@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { GoChevronDown, GoChevronLeft } from 'react-icons/go';
 
 export type OptionT = {
   label: string;
@@ -25,6 +26,7 @@ const Dropdown: React.FC<PropsT> = ({ options, value, onChange }) => {
     return (
       <div
         key={option.value}
+        className="cursor-pointer hover:bg-sky-100 p-1 rounded"
         onClick={() => {
           handleOptionClick(option);
         }}
@@ -35,11 +37,25 @@ const Dropdown: React.FC<PropsT> = ({ options, value, onChange }) => {
   });
 
   return (
-    <div>
-      <div onClick={toggleIsOpen}>{value?.label || 'Select...'}</div>
-      {isOpen && <div>{renderedOptions}</div>}
+    <div className="cursor-pointer w-48 relative">
+      <div
+        className="cursor-pointer flex items-center justify-between border rounded p-3 shadow bg-white w-full"
+        onClick={toggleIsOpen}
+      >
+        {value?.label || 'Select...'}
+        <span className="text-lg">
+          {isOpen ? <GoChevronDown /> : <GoChevronLeft />}
+        </span>
+      </div>
+      {isOpen && (
+        <div className="absolute top-full border rounded p-3 shadow bg-white w-full">
+          {renderedOptions}
+        </div>
+      )}
     </div>
   );
 };
+//use position: absolute on div with options,
+//so when it is shown the neighboring elements will act as if the element doesn’t exist
 
 export default Dropdown;

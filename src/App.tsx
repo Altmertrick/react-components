@@ -21,6 +21,7 @@ function App() {
   return (
     <div className="App">
       <Dropdown options={options} value={selected} onChange={handleSelect} />
+      <div>Hello world</div>
     </div>
   );
 }
