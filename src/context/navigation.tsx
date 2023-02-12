@@ -1,6 +1,13 @@
 import { createContext, useState, useEffect } from 'react';
 
-const NavigationContext = createContext<any>({});
+const initialContext = {
+  currentPath: '/',
+  navigate: (to: string) => {},
+};
+
+type ContextT = typeof initialContext;
+
+const NavigationContext = createContext<ContextT>(initialContext);
 
 const NavigationProvider: React.FC<any> = ({ children }) => {
   //window.location.pathname - reading path from search bar
@@ -22,13 +29,12 @@ const NavigationProvider: React.FC<any> = ({ children }) => {
 
   const navigate = (to: string) => {
     //updating history stack without page reload
-
     window.history.pushState({}, '', to);
     setCurrentPath(to);
   };
 
   return (
-    <NavigationContext.Provider value={{ a: 5 }}>
+    <NavigationContext.Provider value={{ currentPath, navigate }}>
       {currentPath}
       {children}
     </NavigationContext.Provider>

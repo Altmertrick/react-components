@@ -8,9 +8,7 @@ import DropdownPage from './pages/dropdownPage/DropdownPage';
 import NavigationContext from './context/navigation';
 
 const App = () => {
-  const { a } = useContext(NavigationContext);
-
-  return <div>{a}</div>;
+  return <div>{'s'}</div>;
 };
 
 export default App;
