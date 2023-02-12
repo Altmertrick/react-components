@@ -22,7 +22,7 @@ const Dropdown: React.FC<PropsT> = ({ options, value, onChange }) => {
       //in some cases we can toggle visibility of divEl
       if (!divEl.current) return;
 
-      console.log(divEl.current);
+      //console.log(divEl.current);
       //3checking if clicked element is in the dropdown
       if (!divEl.current?.contains(e.target as Node)) {
         // console.log('outside');

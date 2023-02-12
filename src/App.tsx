@@ -1,30 +1,17 @@
 import './App.css';
 
+import { useState, useEffect, useRef } from 'react';
+
 import ButtonPage from './pages/buttonPage/ButtonPage';
 import AccordionPage from './pages/accordionPage/AccordionPage';
-import Dropdown, { OptionT } from './components/dropdown/Dropdown';
-import { useState } from 'react';
-import Panel from './components/panel/Panel';
+import DropdownPage from './pages/dropdownPage/DropdownPage';
 
-function App() {
-  const [selected, setSelected] = useState<OptionT | null>(null);
-
-  const handleSelect = (selected: OptionT) => {
-    setSelected(selected);
-  };
-
-  const options = [
-    { label: 'Red', value: 'red' },
-    { label: 'Green', value: 'green' },
-    { label: 'Blue', value: 'blue' },
-  ];
-
+const App = () => {
   return (
-    <div className="flex">
-      <Dropdown options={options} value={selected} onChange={handleSelect} />
-      <Dropdown options={options} value={selected} onChange={handleSelect} />
+    <div>
+      <DropdownPage />
     </div>
   );
-}
+};
 
 export default App;
