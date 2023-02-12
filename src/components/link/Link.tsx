@@ -13,12 +13,7 @@ const Link: React.FC<any> = ({ to, children }) => {
     navigate(to);
   };
   return (
-    <a
-      href={to}
-      onClick={(e) => {
-        handleClick;
-      }}
-    >
+    <a href={to} onClick={handleClick}>
       {children}
     </a>
   );
