@@ -23,7 +23,7 @@ const ButtonPage: FC<any> = () => {
         </Button>
       </div>
       <div>
-        <Button styleType={'success'} outlined>
+        <Button styleType={'success'}>
           <GoGlobe />
           Success
         </Button>

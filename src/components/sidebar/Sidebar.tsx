@@ -9,14 +9,19 @@ const Sidebar: React.FC<{}> = (props) => {
 
   const renderedLinks = links.map((link) => {
     return (
-      <Link className="mb-4" key={link.path} to={link.path}>
+      <Link
+        key={link.path}
+        className="mb-3"
+        classNameActive="font-bold border-l-4 border-blue-500 pl-2"
+        to={link.path}
+      >
         {link.label}
       </Link>
     );
   });
 
   return (
-    <div className="flex flex-col sticky top-0 overflow-y-scroll">
+    <div className="flex flex-col items-start sticky top-0 overflow-y-scroll">
       {renderedLinks}
     </div>
   );

@@ -11,7 +11,6 @@ const NavigationContext = createContext<ContextT>(initialContext);
 
 const NavigationProvider: React.FC<any> = ({ children }) => {
   //window.location.pathname - reading path from search bar
-
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
@@ -19,10 +18,8 @@ const NavigationProvider: React.FC<any> = ({ children }) => {
     //when user clicks '->' or '<-' buttons in browser to jump in history
     //ALSO we need to rerender component wen path is changed so we use 'currentPath' peace of state for that
     const handler = () => {
-      console.log(window.location.pathname);
       setCurrentPath(window.location.pathname);
     };
-
     //'popstate' event occurs when when user clicks '->' or '<-'
     window.addEventListener('popstate', handler);
 

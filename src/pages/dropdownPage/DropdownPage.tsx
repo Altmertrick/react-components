@@ -15,11 +15,10 @@ const DropdownPage = () => {
   ];
 
   return (
-    <div className="flex justify-center flex-wrap">
-      <Dropdown options={options} value={value} onChange={handleSelect} />
-      <Dropdown options={options} value={value} onChange={handleSelect} />
-      <Dropdown options={options} value={value} onChange={handleSelect} />
-      <Dropdown options={options} value={value} onChange={handleSelect} />
+    <div>
+      <div className="flex justify-center flex-wrap">
+        <Dropdown options={options} value={value} onChange={handleSelect} />
+      </div>
     </div>
   );
 };
