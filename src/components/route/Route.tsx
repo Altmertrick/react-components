@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import NavigationContext from '../../context/navigation';
+import useNavigation from '../../hooks/use-navigation';
 
 type PropsT = {
   path: String;
@@ -7,7 +6,7 @@ type PropsT = {
 };
 
 const Route: React.FC<PropsT> = ({ path, children }) => {
-  const { currentPath } = useContext(NavigationContext);
+  const { currentPath } = useNavigation();
 
   if (path === currentPath) {
     return <>{children}</>;
