@@ -5,12 +5,18 @@ type PropsT = {
   to: string;
   children: React.ReactNode;
   className?: string;
+  classNameActive?: string;
 };
 
 //Purpose of Link comp is to prevent normal browser behavior(reloading page)
 //when clicking on <a>
-const Link: React.FC<PropsT> = ({ to, children, className }) => {
-  const { navigate } = useNavigation();
+const Link: React.FC<PropsT> = ({
+  to,
+  children,
+  className,
+  classNameActive,
+}) => {
+  const { navigate, currentPath } = useNavigation();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     //if user holds commandKey (e.metaKey) ro ctrlKey
@@ -22,7 +28,11 @@ const Link: React.FC<PropsT> = ({ to, children, className }) => {
     navigate(to);
   };
 
-  const classes = classNames('text-blue-500', className);
+  const classes = classNames(
+    'text-blue-500',
+    className,
+    to === currentPath && classNameActive
+  );
 
   return (
     <a className={classes} href={to} onClick={handleClick}>
