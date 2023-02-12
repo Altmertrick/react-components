@@ -19,12 +19,16 @@ const NavigationProvider: React.FC<any> = ({ children }) => {
     //when user clicks '->' or '<-' buttons in browser to jump in history
     //ALSO we need to rerender component wen path is changed so we use 'currentPath' peace of state for that
     const handler = () => {
+      console.log(window.location.pathname);
       setCurrentPath(window.location.pathname);
     };
-    //'popstate' event occurs when when user clicks '->' or '<-'
-    window.document.addEventListener('popstate', handler);
 
-    return window.document.removeEventListener('popstate', handler);
+    //'popstate' event occurs when when user clicks '->' or '<-'
+    window.addEventListener('popstate', handler);
+
+    return () => {
+      window.removeEventListener('popstate', handler);
+    };
   }, []);
 
   const navigate = (to: string) => {
@@ -35,7 +39,6 @@ const NavigationProvider: React.FC<any> = ({ children }) => {
 
   return (
     <NavigationContext.Provider value={{ currentPath, navigate }}>
-      {currentPath}
       {children}
     </NavigationContext.Provider>
   );
