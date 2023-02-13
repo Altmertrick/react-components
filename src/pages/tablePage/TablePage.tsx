@@ -1,6 +1,13 @@
 import Table from '../../components/table/Table';
+import { render } from '@testing-library/react';
 
 const TablePage: React.FC<any> = () => {
+  const config = [
+    { label: 'Fruits', render: (item: any) => item.name },
+    { label: 'Color', render: (item: any) => item.color },
+    { label: 'Price', render: (item: any) => item.score },
+  ];
+
   const data = [
     { name: 'Orange', color: 'bg-orange-500', score: 5 },
     { name: 'Apple', color: 'bg-red-500', score: 3 },
@@ -10,7 +17,7 @@ const TablePage: React.FC<any> = () => {
 
   return (
     <div>
-      <Table data={data} />
+      <Table<typeof config[0], typeof data[0]> data={data} config={config} />
     </div>
   );
 };

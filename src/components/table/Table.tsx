@@ -1,22 +1,33 @@
-type ItemT = {
-  name: string;
-  color: string;
-  score: number;
-};
+//Generic constrains
+import { render } from '@testing-library/react';
+interface Config {
+  label: string;
+  render: (item: any) => any;
+}
+interface DataT {}
 
-type PropsT = {
-  data: Array<ItemT>;
-};
+interface DataGridProps<C, D> {
+  config: Array<C>;
+  data: Array<D>;
+}
 
-const Table: React.FC<PropsT> = ({ data }) => {
-  const renderedRows = data.map((item) => {
+function Table<C extends Config, D>({ config, data }: DataGridProps<C, D>) {
+  const renderedHeaders = config.map((column: C) => {
+    return <th>{column.label}</th>;
+  });
+
+  const renderedRows = data.map((item: any) => {
+    const renderedCells = config.map((column) => {
+      return (
+        <td className="p-3" key={column.label}>
+          {column.render(item)}
+        </td>
+      );
+    });
+
     return (
       <tr className="border-b" key={item.name}>
-        <th className="p-3">{item.name}</th>
-        <th className="p-3">
-          <div className={`p-3 m-2 ${item.color}`}></div>
-        </th>
-        <th className="p-3">{item.score}</th>
+        {renderedCells}
       </tr>
     );
   });
@@ -24,15 +35,18 @@ const Table: React.FC<PropsT> = ({ data }) => {
   return (
     <table className="table-auto border-spacing-2">
       <thead>
-        <tr className="border-b-2">
-          <th>Fruits</th>
-          <th>Color</th>
-          <th>Score</th>
-        </tr>
+        <tr className="border-b-2">{renderedHeaders}</tr>
       </thead>
       <tbody>{renderedRows}</tbody>
     </table>
   );
-};
+}
 
 export default Table;
+
+//Table accepts data and config props
+//config is array of objects,
+//each object controls how one of the column will be displayed
+
+//data is array of objects,
+//each object represents one row of the table
