@@ -1,7 +1,5 @@
 import './App.css';
 
-import { useState, useEffect, useRef, useContext } from 'react';
-
 import ButtonPage from './pages/buttonPage/ButtonPage';
 import AccordionPage from './pages/accordionPage/AccordionPage';
 import DropdownPage from './pages/dropdownPage/DropdownPage';
@@ -9,6 +7,7 @@ import DropdownPage from './pages/dropdownPage/DropdownPage';
 import Route from './components/route/Route';
 import Sidebar from './components/sidebar/Sidebar';
 import ModalPage from './pages/modalPage/ModalPage';
+import TablePage from './pages/tablePage/TablePage';
 
 const App = () => {
   return (
@@ -26,6 +25,9 @@ const App = () => {
         </Route>
         <Route path="/modal">
           <ModalPage />
+        </Route>
+        <Route path="/table">
+          <TablePage />
         </Route>
       </div>
     </div>
