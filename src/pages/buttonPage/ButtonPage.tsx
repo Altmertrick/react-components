@@ -11,7 +11,7 @@ const ButtonPage: FC<any> = () => {
   return (
     <div>
       <div>
-        <Button onClick={handleEvent} styleType={'primary'} outlined>
+        <Button onClick={handleEvent} styleType={'primary'}>
           <GoBell />
           Primary
         </Button>
@@ -29,10 +29,17 @@ const ButtonPage: FC<any> = () => {
         </Button>
       </div>
       <div>
-        <Button styleType={'warning'}>Warning</Button>
+        <Button styleType={'warning'}>
+          <GoBell />
+          Warning
+        </Button>
       </div>
       <div>
-        <Button styleType={'danger'}>Danger</Button>
+        <Button styleType={'danger'}>
+          {' '}
+          <GoSquirrel />
+          Danger
+        </Button>
       </div>
     </div>
   );

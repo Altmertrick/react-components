@@ -8,6 +8,7 @@ import DropdownPage from './pages/dropdownPage/DropdownPage';
 
 import Route from './components/route/Route';
 import Sidebar from './components/sidebar/Sidebar';
+import ModalPage from './pages/modalPage/ModalPage';
 
 const App = () => {
   return (
@@ -22,6 +23,9 @@ const App = () => {
         </Route>
         <Route path="/buttons">
           <ButtonPage />
+        </Route>
+        <Route path="/modal">
+          <ModalPage />
         </Route>
       </div>
     </div>
