@@ -1,5 +1,8 @@
+import { Fragment } from 'react';
+
 interface Config {
   label: string;
+  header?: () => JSX.Element;
   render: (item: any) => any;
 }
 interface DataT {}
@@ -16,6 +19,10 @@ function Table<C extends Config, D>({
   rowKeyFn,
 }: DataGridProps<C, D>) {
   const renderedHeaders = config.map((column: C) => {
+    if (column.header) {
+      return <Fragment key={column.label}>{column.header()}</Fragment>;
+    }
+
     return <th key={column.label}>{column.label}</th>;
   });
 
@@ -49,7 +56,23 @@ export default Table;
 
 //Table accepts data and config props
 //config is array of objects,
-//each object controls how one of the column will be displayed
+//each object in config controls how one of the column will be displayed
+
+// config.label - name of the column (table header)
+//config.render - forms every value of a column (.render: (item)=>item.price)
+//config.header - optional fn to decide what put inside <th></th> if not provided show .label
+//config.sortValue - optional fn to describe how to extract values for sorting when this column is clicked
+// if colum should be sortable provide only .sortValue and .header must be omitted
+// header will be returned from SortableTable
+// .sortValue(item) => item.price // sorting based on items price prop
+
+//<SortableTable config data /> - comp. where all sorting logic will be
+//Purpose:
+// Look at each object in config arr
+// Check if the ojb have a 'sortValue' function
+// If so, column that represents this obj must be sortable
+// Adds a  header props that will show clickable header cell
+// When user click the cell sorts the data and passes it down to the Table
 
 //data is array of objects,
 //each object represents one row of the table
