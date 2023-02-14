@@ -1,5 +1,3 @@
-//Generic constrains
-import { render } from '@testing-library/react';
 interface Config {
   label: string;
   render: (item: any) => any;
@@ -9,24 +7,29 @@ interface DataT {}
 interface DataGridProps<C, D> {
   config: Array<C>;
   data: Array<D>;
+  rowKeyFn: (rowData: D) => string;
 }
 
-function Table<C extends Config, D>({ config, data }: DataGridProps<C, D>) {
+function Table<C extends Config, D>({
+  config,
+  data,
+  rowKeyFn,
+}: DataGridProps<C, D>) {
   const renderedHeaders = config.map((column: C) => {
-    return <th>{column.label}</th>;
+    return <th key={column.label}>{column.label}</th>;
   });
 
-  const renderedRows = data.map((item: any) => {
+  const renderedRows = data.map((rowData: any) => {
     const renderedCells = config.map((column) => {
       return (
         <td className="p-3" key={column.label}>
-          {column.render(item)}
+          {column.render(rowData)}
         </td>
       );
     });
 
     return (
-      <tr className="border-b" key={item.name}>
+      <tr className="border-b" key={rowKeyFn(rowData)}>
         {renderedCells}
       </tr>
     );
