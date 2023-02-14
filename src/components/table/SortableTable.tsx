@@ -1,5 +1,6 @@
-import Table from './Table';
 import { useState } from 'react';
+import { GoTriangleUp, GoTriangleDown } from 'react-icons/go';
+import Table from './Table';
 
 interface DataT {}
 interface ConfigT {
@@ -21,12 +22,12 @@ function SortableTable<C extends ConfigT, D>({
 }: PropsT<C, D>) {
   const [sortedData, setSortedData] = useState(data);
 
-  const handleSort = (getSortValueFn: any, order?: 'acs' | 'decs') => {
+  const handleSort = (getSortValueFn: any, order?: 'asc' | 'desc') => {
     const newSortedData = data.sort((a, b) => {
-      const valA = getSortValueFn(a);
+      const valA: any = getSortValueFn(a);
       const valB = getSortValueFn(b);
 
-      const reverseOrder = order === 'acs' ? 1 : -1;
+      const reverseOrder = order === 'asc' ? 1 : -1;
 
       if (typeof valA === 'string') {
         return valA.localeCompare(valB) * reverseOrder;
@@ -39,32 +40,34 @@ function SortableTable<C extends ConfigT, D>({
   };
 
   const configWithAction = config.map((column) => {
-    if (column.sortValue) {
-      return {
-        ...column,
-        header: () => (
-          <th>
-            {column.label}
+    if (!column.sortValue) return column;
 
-            <button
+    return {
+      ...column,
+      header: () => (
+        <th className="flex items-center">
+          {column.label}
+          <div className="p-2">
+            <span
+              className="cursor-pointer"
               onClick={() => {
-                handleSort(column.sortValue, 'acs');
+                handleSort(column.sortValue, 'asc');
               }}
             >
-              ^
-            </button>
-            <button
+              <GoTriangleUp />
+            </span>
+            <span
+              className="cursor-pointer"
               onClick={() => {
-                handleSort(column.sortValue, 'decs');
+                handleSort(column.sortValue, 'desc');
               }}
             >
-              v
-            </button>
-          </th>
-        ),
-      };
-    }
-    return column;
+              <GoTriangleDown />
+            </span>
+          </div>
+        </th>
+      ),
+    };
   });
 
   return <Table<C, D> config={configWithAction} data={sortedData} {...rest} />;

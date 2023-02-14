@@ -2,8 +2,8 @@ import { Fragment } from 'react';
 
 interface Config {
   label: string;
-  header?: () => JSX.Element;
   render: (item: any) => any;
+  header?: () => JSX.Element;
 }
 interface DataT {}
 
