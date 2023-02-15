@@ -58,6 +58,7 @@ function SortableTable<C extends ConfigT, D>({
     );
   };
 
+  //Adding to each sortable column clickable header that invoke data sorting
   const updatedConfig = config.map((column) => {
     if (!column.sortValue) return column;
 
@@ -89,3 +90,19 @@ function SortableTable<C extends ConfigT, D>({
 }
 
 export default SortableTable;
+
+// config.label - name of the column (table header)
+//config.render - forms every value of a column (.render: (item)=>item.price)
+//config.header - optional fn to decide what put inside <th></th> if not provided show .label
+//config.sortValue - optional fn to describe how to extract values for sorting when this column is clicked
+// if colum should be sortable provide only .sortValue and .header must be omitted
+// header will be returned from SortableTable
+// .sortValue(item) => item.price // sorting based on items price prop
+
+//<SortableTable config data /> - comp. where all sorting logic will be
+//Purpose:
+// Look at each object in config arr
+// Check if the ojb have a 'sortValue' function
+// If so, column that represents this obj must be sortable
+// Adds a  header props that will return clickable header cell, which will be shown by Table comp
+// When user click the cell sorts the data and passes it down to the Table
