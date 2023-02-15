@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { GoArrowSmallUp, GoArrowSmallDown } from 'react-icons/go';
+import { useSort } from '../../hooks/use-sort';
 import Table from './Table';
 
 interface DataT {}
@@ -14,7 +14,6 @@ interface PropsT<C, D> {
   data: Array<D>;
   rowKeyFn: (rowData: D) => string;
 }
-
 type SortOrderT = null | 'asc' | 'desc';
 
 function SortableTable<C extends ConfigT, D>({
@@ -22,28 +21,10 @@ function SortableTable<C extends ConfigT, D>({
   data,
   ...rest
 }: PropsT<C, D>) {
-  const [sortOrder, setSortOrder] = useState<SortOrderT>(null);
-  const [sortBy, setSortBy] = useState<null | string>(null);
-
-  const handleSort = (label: any) => {
-    if (sortBy && label !== sortBy) {
-      setSortOrder('asc');
-      setSortBy(label);
-      return;
-    }
-
-    //sort cycle null(unsorted) - click => asc -click => desc - click => unsorted
-    if (sortOrder === null) {
-      setSortOrder('asc');
-      setSortBy(label);
-    } else if (sortOrder === 'asc') {
-      setSortOrder('desc');
-      setSortBy(label);
-    } else if (sortOrder === 'desc') {
-      setSortOrder(null);
-      setSortBy(null);
-    }
-  };
+  const { sortBy, sortOrder, sortedData, setSortableColumn } = useSort(
+    config,
+    data
+  );
 
   const showIcons = (
     label: string,
@@ -86,7 +67,7 @@ function SortableTable<C extends ConfigT, D>({
         <th
           className="cursor-pointer hover:bg-gray-100"
           onClick={() => {
-            handleSort(column.label);
+            setSortableColumn(column.label);
           }}
         >
           <div className="flex items-center">
@@ -98,24 +79,13 @@ function SortableTable<C extends ConfigT, D>({
     };
   });
 
-  let sortedData = data;
-
-  if (sortOrder && sortBy) {
-    const { sortValue }: any = config.find((column) => column.label === sortBy);
-
-    sortedData = [...data].sort((a, b) => {
-      const valueA = sortValue(a);
-      const valueB = sortValue(b);
-      const reverseOrder = sortOrder === 'asc' ? 1 : -1;
-      if (typeof valueA === 'string') {
-        return valueA.localeCompare(valueB) * reverseOrder;
-      } else {
-        return (valueA - valueB) * reverseOrder;
-      }
-    });
-  }
-
-  return <Table<C, D> config={updatedConfig} data={sortedData} {...rest} />;
+  return (
+    <Table<typeof updatedConfig[0], typeof sortedData[0]>
+      config={updatedConfig}
+      data={sortedData}
+      {...rest}
+    />
+  );
 }
 
 export default SortableTable;

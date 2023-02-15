@@ -2,6 +2,7 @@
 import SortableTable from '../../components/table/SortableTable';
 
 const TablePage: React.FC<any> = () => {
+  console.log('table page render');
   const config = [
     {
       label: 'Name',
@@ -10,7 +11,7 @@ const TablePage: React.FC<any> = () => {
     },
     {
       label: 'Color',
-      header: () => <th className="bg-red-500">Color</th>,
+      header: () => <th>Color</th>,
       render: (item: any) => <div className={`p-3 m-2 ${item.color}`}></div>,
     },
     {
