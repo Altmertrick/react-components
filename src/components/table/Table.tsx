@@ -29,7 +29,7 @@ function Table<C extends Config, D>({
   const renderedRows = data.map((rowData: any) => {
     const renderedCells = config.map((column) => {
       return (
-        <td className="p-3" key={column.label}>
+        <td className="p-3 text-center" key={column.label}>
           {column.render(rowData)}
         </td>
       );

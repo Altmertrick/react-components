@@ -25,7 +25,7 @@ const Sidebar: React.FC<{}> = (props) => {
   });
 
   return (
-    <div className="flex flex-col items-start sticky top-0 overflow-y-scroll">
+    <div className="flex flex-col items-start   overflow-y-auto">
       {renderedLinks}
     </div>
   );

@@ -66,7 +66,7 @@ function SortableTable<C extends ConfigT, D>({
       ...column,
       header: () => (
         <th
-          className="cursor-pointer hover:bg-gray-100"
+          className="cursor-pointer hover:bg-gray-100 p-1"
           onClick={() => {
             setSortableColumn(column.label);
           }}

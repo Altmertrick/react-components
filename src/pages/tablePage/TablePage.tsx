@@ -19,17 +19,28 @@ const TablePage: React.FC<any> = () => {
       render: (item: any) => item.price,
       sortValue: (item: any) => item.price,
     },
+    {
+      label: 'Weight',
+      render: (item: any) => item.weight,
+      sortValue: (item: any) => item.weight,
+    },
+    {
+      label: 'Price/Weight',
+      render: (item: any) => Math.floor((item.price / item.weight) * 100) / 100,
+      sortValue: (item: any) =>
+        Math.floor((item.price / item.weight) * 100) / 100,
+    },
   ];
   const data = [
-    { name: 'Orange', color: 'bg-orange-500', price: 5 },
-    { name: 'Apple', color: 'bg-red-500', price: 3 },
-    { name: 'Banana', color: 'bg-yellow-500', price: 1 },
-    { name: 'Lime', color: 'bg-green-500', price: 2 },
+    { name: 'Orange', color: 'bg-orange-500', price: 5, weight: 1.3 },
+    { name: 'Apple', color: 'bg-red-500', price: 3, weight: 2.5 },
+    { name: 'Banana', color: 'bg-yellow-500', price: 1, weight: 1.1 },
+    { name: 'Lime', color: 'bg-green-500', price: 2, weight: 0.2 },
   ];
   const rowKeyFn = (rowData: typeof data[0]) => rowData.name;
 
   return (
-    <div>
+    <div className="flex justify-center">
       <SortableTable data={data} config={config} rowKeyFn={rowKeyFn} />
     </div>
   );

@@ -4,10 +4,6 @@ import { GoBell, GoGlobe } from 'react-icons/go';
 import Button from '../../components/button/Button';
 
 const ButtonPage: FC<any> = () => {
-  const handleEvent = () => {
-    console.log('Hello');
-  };
-
   const buttonOptions = [
     '',
     'primary',
@@ -54,7 +50,7 @@ const ButtonPage: FC<any> = () => {
   });
 
   return (
-    <div className="flex">
+    <div className="flex justify-center">
       <div>{renderedButtons}</div>
       <div>{renderedButtonsRounded}</div>
       <div>{renderedButtonsLoading}</div>

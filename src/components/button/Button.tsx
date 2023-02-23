@@ -1,8 +1,6 @@
 import className from 'classnames';
 import { GoSync } from 'react-icons/go';
 
-type Styles = { primary: true } | { secondary: true } | { success: true };
-
 interface ButtonAttributesT
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
