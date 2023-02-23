@@ -76,7 +76,7 @@ const Dropdown: React.FC<PropsT> = ({ options, value, onChange }) => {
         </span>
       </Panel>
       {isOpen && (
-        <Panel className="absolute top-full ">{renderedOptions}</Panel>
+        <Panel className="absolute top-full z-10">{renderedOptions}</Panel>
       )}
     </div>
   );

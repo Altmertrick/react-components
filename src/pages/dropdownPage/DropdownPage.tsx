@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Dropdown, { OptionT } from '../../components/dropdown/Dropdown';
 
 const DropdownPage = () => {
@@ -24,13 +24,18 @@ const DropdownPage = () => {
   ];
 
   return (
-    <div>
+    <div className="mt-10">
       <div className="flex justify-center flex-wrap">
+        <h1 className="m-2 text-xl bold">Select a color:</h1>
         <Dropdown
           options={colors}
           value={valueColor}
           onChange={handleSelectColors}
         />
+      </div>
+      <hr className="m-2" />
+      <div className="flex justify-center flex-wrap">
+        <h1 className="m-2 text-xl bold">Select a drink:</h1>
         <Dropdown
           options={drinks}
           value={valueDrink}
