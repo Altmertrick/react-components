@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { GoBell, GoGlobe, GoSquirrel } from 'react-icons/go';
+import { GoBell, GoGlobe } from 'react-icons/go';
 
 import Button from '../../components/button/Button';
 
@@ -8,39 +8,56 @@ const ButtonPage: FC<any> = () => {
     console.log('Hello');
   };
 
-  return (
-    <div>
-      <div>
-        <Button onClick={handleEvent} styleType={'primary'}>
+  const buttonOptions = [
+    '',
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
+  ];
+  const renderedButtons = buttonOptions.map((option: string, i) => {
+    const btnOption: any = {};
+    btnOption[option] = option;
+    return (
+      <div key={i} className="m-2">
+        <Button {...btnOption}>
           <GoBell />
-          Primary
+          {option || 'default'}
         </Button>
       </div>
-      <div>
-        <Button onMouseEnter={handleEvent} styleType={'secondary'}>
-          <GoSquirrel />
-          Secondary
-        </Button>
-      </div>
-      <div>
-        <Button styleType={'success'}>
+    );
+  });
+  const renderedButtonsRounded = buttonOptions.map((option: string, i) => {
+    const btnOption: any = { rounded: true };
+    btnOption[option] = option;
+    return (
+      <div key={i} className="m-2">
+        <Button {...btnOption}>
           <GoGlobe />
-          Success
+          {option || 'default'}
         </Button>
       </div>
-      <div>
-        <Button styleType={'warning'}>
+    );
+  });
+  const renderedButtonsLoading = buttonOptions.map((option: string, i) => {
+    const btnOption: any = { rounded: true, loading: true };
+    btnOption[option] = option;
+    return (
+      <div key={i} className="m-2">
+        <Button {...btnOption}>
           <GoBell />
-          Warning
+          {option || 'default'}
         </Button>
       </div>
-      <div>
-        <Button styleType={'danger'}>
-          {' '}
-          <GoSquirrel />
-          Danger
-        </Button>
-      </div>
+    );
+  });
+
+  return (
+    <div className="flex">
+      <div>{renderedButtons}</div>
+      <div>{renderedButtonsRounded}</div>
+      <div>{renderedButtonsLoading}</div>
     </div>
   );
 };

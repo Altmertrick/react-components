@@ -7,6 +7,8 @@ const Sidebar: React.FC<{}> = (props) => {
     { label: 'Buttons', path: '/buttons' },
     { label: 'Modal', path: '/modal' },
     { label: 'Table', path: '/table' },
+    { label: 'Counter', path: '/counter' },
+    { label: 'Drag And Drop', path: '/drag' },
   ];
 
   const renderedLinks = links.map((link) => {

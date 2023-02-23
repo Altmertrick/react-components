@@ -26,7 +26,7 @@ const CounterPage: React.FC<PropsT> = ({ initialCount }) => {
   return (
     <div>
       <div>{count}</div>
-      <Button onClick={increment} styleType="primary">
+      <Button onClick={increment} primary>
         Add
       </Button>
     </div>

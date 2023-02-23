@@ -8,6 +8,8 @@ import Route from './components/route/Route';
 import Sidebar from './components/sidebar/Sidebar';
 import ModalPage from './pages/modalPage/ModalPage';
 import TablePage from './pages/tablePage/TablePage';
+import CounterPage2 from './pages/counterPage/counterPage2';
+import DragAndDropPage from './pages/drag-and-dropPage/DragAndDropPage';
 
 const App = () => {
   return (
@@ -28,6 +30,12 @@ const App = () => {
         </Route>
         <Route path="/table">
           <TablePage />
+        </Route>
+        <Route path="/counter">
+          <CounterPage2 />
+        </Route>
+        <Route path="/drag">
+          <DragAndDropPage />
         </Route>
       </div>
     </div>

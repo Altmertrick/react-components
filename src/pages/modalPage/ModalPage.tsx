@@ -14,7 +14,7 @@ const ModalPage: React.FC<any> = (props) => {
 
   const actionBar = (
     <div>
-      <Button onClick={handleClose} styleType="primary">
+      <Button onClick={handleClose} success>
         Accept
       </Button>
     </div>
@@ -28,22 +28,10 @@ const ModalPage: React.FC<any> = (props) => {
 
   return (
     <div>
-      <Button onClick={handleClick} styleType={'primary'}>
+      <Button onClick={handleClick} primary>
         Open Modal
       </Button>
       {showModal && modal}
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque iste
-        rerum nostrum ipsam aliquid molestias vel consequatur, provident
-        reprehenderit possimus rem quis delectus eius fugiat nemo sit.
-        Doloribus, quas veritatis.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque iste
-        rerum nostrum ipsam aliquid molestias vel consequatur, provident
-        reprehenderit possimus rem quis delectus eius fugiat nemo sit.
-        Doloribus, quas veritatis.
-      </p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque iste
         rerum nostrum ipsam aliquid molestias vel consequatur, provident

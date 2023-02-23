@@ -43,7 +43,7 @@ const Accordion: React.FC<PropsT> = ({ items }) => {
     return (
       <div style={{ border: '3px solid back' }} key={item.id}>
         <div
-          className="flex items-center justify-between p-3 border-b bg-gray-100 cursor-pointer"
+          className="flex items-center justify-between p-3 border-b bg-gray-50 cursor-pointer"
           onClick={() => {
             handleClick(idx);
           }}
