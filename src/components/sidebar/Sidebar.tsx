@@ -1,4 +1,4 @@
-import Link from '../link/Link';
+import StyledLink from '../link/StyledLink';
 
 const Sidebar: React.FC<{}> = (props) => {
   const links = [
@@ -13,14 +13,14 @@ const Sidebar: React.FC<{}> = (props) => {
 
   const renderedLinks = links.map((link) => {
     return (
-      <Link
+      <StyledLink
         key={link.path}
-        className="mb-3"
+        className="mb-3 text-blue-500"
         classNameActive="font-bold border-l-4 border-blue-500 pl-2"
         to={link.path}
       >
         {link.label}
-      </Link>
+      </StyledLink>
     );
   });
 

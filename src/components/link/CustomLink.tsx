@@ -10,7 +10,7 @@ type PropsT = {
 
 //Purpose of Link comp is to prevent normal browser behavior(reloading page)
 //when clicking on <a>
-const Link: React.FC<PropsT> = ({
+const CustomLink: React.FC<PropsT> = ({
   to,
   children,
   className,
@@ -41,4 +41,4 @@ const Link: React.FC<PropsT> = ({
   );
 };
 
-export default Link;
+export default CustomLink;
