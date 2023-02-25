@@ -115,7 +115,7 @@ const DragAndDropPage: React.FC<any> = (props) => {
           dragDropHandler(e, card);
         }}
       >
-        <div className="w-36 ">
+        <div className="w-36 pointer-events-none">
           <h3>{card.label}</h3>
           <div className="h-36  p-1">{card.text}</div>
         </div>
@@ -127,5 +127,7 @@ const DragAndDropPage: React.FC<any> = (props) => {
     <Panel className="flex justify-center flex-wrap">{renderedCards}</Panel>
   );
 };
+
+//pointer-events: none; on children so the doesn't fire events of parent div
 
 export default DragAndDropPage;
